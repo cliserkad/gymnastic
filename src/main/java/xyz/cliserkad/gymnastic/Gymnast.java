@@ -26,16 +26,16 @@ public class Gymnast {
 		return scores.size();
 	}
 
-	public int overallScore() {
-		List<Integer> scores = new ArrayList<>();
+	public double overallScore() {
+		List<Double> scores = new ArrayList<>();
 		for(JudgeScore score : this.scores) {
 			scores.add(score.score());
 		}
 		Collections.sort(scores);
 		scores.remove(scores.size() - 1);
 		scores.remove(0);
-		int total = 0;
-		for(int score : scores) {
+		double total = 0;
+		for(double score : scores) {
 			total += score;
 		}
 		if(scores.size() != 3)
@@ -44,6 +44,14 @@ public class Gymnast {
 	}
 
 	public String toString() {
-		return "Gymnast " + name + " from " + city + " has an overall score of " + overallScore();
+		String scores = "";
+		for(JudgeScore score : this.scores) {
+			scores += score + "\n";
+		}
+
+		return "Gymnast " + name + "\n"
+			+ "City: " + city + "\n" +
+			scores + "\n" +
+			"Overall Score: " + overallScore();
 	}
 }
